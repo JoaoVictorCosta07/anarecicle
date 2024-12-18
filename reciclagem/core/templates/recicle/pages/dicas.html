@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/dicas.css' %}">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+        <title>Dicas de Reciclagem</title>
+    </head>
+
+    <body>
+        <header>
+            <a href="{% url 'index' %}">
+                <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo">
+                </a>
+            <nav>
+                <ul class="menu">
+                    <li><a href="{% url 'index' %}">Home</a></li>
+                    <li><a href="{% url 'dicas' %}">Dicas de Reciclagem</a></li>
+                    <li><a href="{% url 'parceiros' %}">Endereços de Coleta</a></li>
+                    <li><a href="#">Sobre Nós</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger" aria-label="Abrir menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="msg">
+                {% if user.is_authenticated %}
+                    <p class="mensagem_login">
+                        Bem-vindo(a), {{ user.get_full_name|default:user.username }}!
+                    </p>
+                    <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit">Sair</button>
+                    </form>
+                {% else %}
+                    <form action="{% url 'login' %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <input type="text" name="username" placeholder="Usuário" required>
+                        <input type="password" name="password" placeholder="Senha" required>
+                        <button type="submit">Entrar</button>
+                    </form>
+                {% endif %}
+            </div>
+        </header>
+
+        <main>
+            <section class="intro">
+                <h1>Dicas de reciclagem</h1>
+                <p>COLOQUE UM TEXTO INTRODUTÓRIO</p>
+            </section>
+
+            <section class="tips">
+                <div class="tip">
+                    <img src="/static/images/reciclagem_papel.png" alt="Reciclagem de Papel">
+                    <h2>Reciclagem de Papel</h2>
+                    <p>Preencha a coluna com dias sobre reciclagem de papel.</p>
+                </div>
+                <div class="tip">
+                    <img src="/static/images/reciclagem_plastico.png" alt="Reciclagem de Plástico">
+                    <h2>Reciclagem de Plástico</h2>
+                    <p>Preencha a coluna com dias sobre reciclagem de plástico.</p>
+                </div>
+                <div class="tip">
+                    <img src="/static/images/reciclagem_vidro.png" alt="Reciclagem de Vidro">
+                    <h2>Reciclagem de Vidro</h2>
+                    <p>Preencha a coluna com dias sobre reciclagem de vidro.</p>
+                </div>
+                <div class="tip">
+                    <img src="/static/images/reciclagem_metal.png" alt="Reciclagem de Metal">
+                    <h2>Reciclagem de Metal</h2>
+                    <p>Preencha a coluna com dias sobre reciclagem de metal.</p>
+                </div>
+            </section>
+
+            <section class="call-to-action">
+                <p>
+                    "O ambiente é o que somos em nós mesmos. Nós e o ambiente somos dois processos diferentes; nós somos o ambiente e o ambiente somos nós."
+                </p>
+                <h5>Jiddu Krishnamurti</h5>
+            </section>
+        </main>
+
+        <footer>
+            <div class="social-icons">
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://wa.me" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </footer>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const hamburger = document.querySelector(".hamburger");
+                const menu = document.querySelector(".menu");
+
+                hamburger.addEventListener("click", function () {
+                    menu.classList.toggle("show");
+                });
+            });
+        </script>
+    </body>
+</html>

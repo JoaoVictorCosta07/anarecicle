@@ -1,0 +1,332 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  overflow-x: hidden; /* Evita barra de rolagem horizontal */
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f8f8f8;
+  margin: 0;
+  display: flex;
+  flex-direction: column; /* Garante que o footer esteja no final */
+  min-height: 100vh; /* Força o corpo a ocupar toda a altura da janela */
+}
+/* Estilo do cabeçalho */
+header {
+  display: flex;
+  justify-content: space-between; /* Espaço entre logo e menu/hamburguer */
+  align-items: center;
+  background-color: #2e7d32; /* Verde */
+  color: white;
+  padding: 10px 20px;
+  position: relative;
+}
+
+/* Logo - Lado esquerdo */
+.logo {
+  max-height: 50px;
+}
+
+/* Menu - Visível em telas maiores */
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+/* Menu - Visível em telas maiores */
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+/* Links do menu */
+.menu a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.menu a:hover {
+  color: #fdd835; /* Amarelo claro */
+}
+
+/* Botão hambúrguer */
+.hamburger {
+  display: none; /* Escondido por padrão */
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 25px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 10; /* Garante que o botão fique acima do menu */
+  position: absolute;
+  right: 20px; /* Alinha o botão hambúrguer à direita */
+}
+
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: white;
+  border-radius: 5px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Estilo para esconder/mostrar o menu */
+.menu {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  transition: transform 0.3s ease;
+}
+
+.menu.hidden {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  /* Para dispositivos móveis, o menu fica escondido por padrão */
+  .menu {
+    display: none; /* Esconde o menu por padrão */
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    top: 60px; /* Abaixo do cabeçalho */
+    left: 0;
+    right: 0;
+    background-color: #2e7d32; /* Fundo do menu dropdown */
+    padding: 20px;
+    border-radius: 5px;
+    z-index: 9;
+  }
+
+  .menu.show {
+    display: flex; /* Exibe o menu quando ativado */
+  }
+
+  /* Exibe o botão hambúrguer apenas em telas menores */
+  .hamburger {
+    display: flex;
+  }
+
+  .menu a {
+    color: white; /* Links dentro do menu dropdown */
+  }
+
+  .menu a:hover {
+    color: #fdd835; /* Efeito hover */
+  }
+}
+
+/* Estilo da Introdução */
+.intro {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #f4f4f4;
+}
+
+.intro h1 {
+  font-size: 36px;
+  color: #028a0f;
+  margin-bottom: 20px;
+}
+
+.intro p {
+  font-size: 18px;
+  color: #333;
+}
+
+/* Estilo das Dicas (Quatro Colunas) */
+.tips {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px 20px;
+  background-color: #ffffff;
+  flex-wrap: nowrap; /* Impede quebra em telas maiores */
+}
+
+.tip {
+  text-align: justify;
+  width: 100%; /* Por padrão, ocupa toda a largura */
+  max-width: 30%; /* Limita o tamanho em telas maiores */
+}
+
+.tip img {
+  width: 100%;
+  height: auto;
+}
+
+.tip h2 {
+  font-size: 24px;
+  color: #028a0f;
+  margin: 15px 0;
+}
+
+.tip p {
+  font-size: 16px;
+  color: #555;
+}
+
+/* Estilo da Frase de Efeito */
+.call-to-action {
+  text-align: center;
+  padding: 30px 20px;
+  background-color: #f4f4f4;
+  font-style: italic;
+  font-size: 28px;
+  color: #333;
+}
+
+/* Rodapé */
+footer {
+  background-color: #2e7d32;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Estilo da seção de ícones sociais */
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 10px;
+}
+
+.social-icons a {
+  text-decoration: none;
+  color: white;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.social-icons a:hover {
+  transform: scale(1.2);
+}
+
+.social-icons i {
+  font-size: 28px;
+}
+
+@media (max-width: 768px) {
+  header {
+    display: flex;
+    justify-content: flex-start; /* Logo e mensagem à esquerda e à  direita */
+    align-items: center;
+    flex-wrap: nowrap; /* Impede quebra de linha, logo e mensagem  ficam na mesma linha */
+  }
+  .logo {
+    order: 1; /* Logo fica à esquerda */
+    max-height: 50px; /* Garante que o logo tenha o tamanho  adequado */
+  }
+  .intro {
+    order: 2; /* A mensagem de boas-vindas ficará ao lado do logo  */
+    text-align: left; /* Alinha a mensagem à esquerda */
+    flex: 1; /* Ocupa o restante da largura */
+  }
+  .msg {
+    order: 3; /* O botão do formulário ficará à direita */
+    display: flex;
+    justify-content: flex-end; /* Alinha o botão à direita */
+    width: 100%;
+  }
+  .menu {
+    flex-direction: column; /* Itens do menu em coluna */
+    gap: 10px;
+  }
+  .intro h1 {
+    font-size: 28px; /* Reduz o tamanho do título */
+  }
+  .intro p {
+    font-size: 16px; /* Reduz o tamanho do texto */
+  }
+  .tips {
+    flex-wrap: wrap; /* Permite quebra de linha em telas menores  */
+    flex-direction: column; /* Colunas em uma única linha */
+  }
+  .tip {
+    max-width: 100%; /* Ocupa toda a largura em telas menores */
+  }
+  .call-to-action {
+    font-size: 20px; /* Reduz o tamanho do texto de efeito */
+  }
+  footer {
+    font-size: 14px; /* Reduz o tamanho do texto no rodapé */
+  }
+  .social-icons {
+    gap: 15px; /* Reduz o espaçamento entre ícones */
+  }
+  .social-icons i {
+    font-size: 24px; /* Diminui o tamanho dos ícones */
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 10px 20px;
+  }
+
+  .menu li a {
+    font-size: 16px;
+  }
+
+  .intro h1 {
+    font-size: 24px;
+  }
+
+  .intro p {
+    font-size: 14px;
+  }
+
+  .call-to-action {
+    font-size: 18px;
+  }
+}
+
+.msg {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.msg form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 300px;
+}
+.msg input,
+.msg button {
+  width: 80%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.msg button {
+  background-color: #2e7d32;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.msg button:hover {
+  background-color: #1b5e20; /* Estilo igual ao do "stylo"  */
+}

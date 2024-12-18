@@ -1,0 +1,275 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  overflow-x: hidden; /* Evita barra de rolagem horizontal */
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f8f8f8;
+  margin: 0;
+  display: flex;
+  flex-direction: column; /* Garante que o footer esteja no final */
+  min-height: 100vh; /* Força o corpo a ocupar toda a altura da janela */
+}
+/* Estilo do cabeçalho */
+header {
+  display: flex;
+  justify-content: space-between; /* Espaço entre logo e menu/hamburguer */
+  align-items: center;
+  background-color: #2e7d32; /* Verde */
+  color: white;
+  padding: 10px 20px;
+  position: relative;
+}
+
+/* Logo - Lado esquerdo */
+.logo {
+  max-height: 50px;
+  order: 0;
+}
+
+.menu {
+  display: flex;
+  list-style: none;
+  justify-content: flex-start; /* Alinha à esquerda */
+  align-items: center; /* Centraliza os itens verticalmente */
+  gap: 20px; /* Espaçamento entre itens */
+  margin: 0; /* Remove margens extras */
+  padding: 0; /* Remove padding */
+  order: 0;
+}
+
+.menu a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.menu a:hover {
+  color: #fdd835; /* Amarelo claro */
+}
+
+/* Botão hambúrguer */
+.hamburger {
+  display: none; /* Escondido por padrão */
+}
+
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: white;
+  border-radius: 5px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Estilo para esconder/mostrar o menu */
+.menu {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  transition: transform 0.3s ease;
+}
+
+.menu.hidden {
+  display: none;
+}
+
+main,
+h1 {
+  margin: 20px auto; /* Centraliza o conteúdo e adiciona espaçamento */
+  max-width: 1200px; /* Limita a largura máxima do conteúdo */
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse; /* Remove espaços entre bordas */
+  margin-top: 20px;
+  font-size: 0.9rem; /* Ajusta o tamanho da fonte */
+}
+
+th,
+td {
+  border: 1px solid #ddd; /* Bordas das células */
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #028a0f; /* Verde */
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2; /* Cor de fundo das linhas pares */
+}
+
+tr:hover {
+  background-color: #ddd; /* Cor ao passar o mouse */
+}
+
+/* Rodapé */
+footer {
+  background-color: #2e7d32;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.social-icons a {
+  color: white;
+  font-size: 1.5em;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #fdd835;
+}
+
+.msg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.msg form {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.msg input,
+.msg button {
+  padding: 5px;
+  font-size: 0.9rem;
+}
+
+.msg button {
+  background-color: #2e7d32;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.msg button:hover {
+  background-color: #1b5e20;
+}
+
+@media (max-width: 768px) {
+  header {
+    display: flex;
+    justify-content: space-between; /* Espaço entre logo, msg e hambúrguer */
+    align-items: center; /* Alinha todos verticalmente */
+    flex-wrap: nowrap; /* Impede que os itens quebrem para a próxima linha */
+  }
+
+  .logo {
+    order: 1; /* Garante que o logo fique à esquerda */
+  }
+
+  .msg {
+    order: 2; /* Garante que a mensagem de boas-vindas fique no meio */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 0;
+  }
+}
+
+.hamburger {
+  order: 3; /* Garante que o botão hambúrguer fique à direita */
+  display: block; /* Mostra o hambúrguer em telas pequenas */
+  background: none; /* Remove qualquer fundo */
+  border: none; /* Remove qualquer borda */
+  box-shadow: none; /* Remove qualquer sombra */
+  cursor: pointer; /* Adiciona cursor de pointer */
+}
+
+.hamburger span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  background: white;
+  border-radius: 2px;
+}
+
+.menu {
+  display: flex; /* Esconde o menu em telas pequenas */
+  flex-direction: column; /* Coloca os itens do menu em coluna */
+  background-color: #2d2d2d;
+  position: absolute;
+  top: 100%; /* Abaixo o menu */
+  right: 0;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.menu.show {
+  display: flex;
+}
+
+.menu a {
+  color: white;
+  padding: 10px 0;
+}
+
+.menu a:hover {
+  color: #fd4835; /* Efeito hover */
+}
+
+.content {
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  margin: 20px 0;
+}
+
+table {
+  min-width: 600px;
+  width: 100%;
+}
+
+.msg {
+  width: 100%;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.msg form {
+  flex-direction: column;
+  align-items: center;
+}
+
+.msg input,
+.msg button {
+  width: 100%;
+  max-width: 300px;
+}
+
+.logo {
+  max-height: 60px; /* Se necessário */
+}

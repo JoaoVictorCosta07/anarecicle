@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">,
+        <title>Parceiros</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/parceiros.css' %}"> <!-- Link para o CSS específico -->
+
+    </head>
+
+<body>
+    <header>
+        <a href="{% url 'index' %}">
+            <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo">
+            </a>
+        <nav>
+          <ul class="menu">
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'dicas' %}">Dicas de Reciclagem</a></li>
+            <li><a href="{% url 'parceiros' %}">Endereços de Coleta</a></li>
+            <li><a href="#">Sobre Nós</a></li>
+          </ul>
+        </nav>
+        <button class="hamburger" aria-label="Abrir menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="msg">
+          {% if user.is_authenticated %}
+          <p class="mensagem_login">Bem-vindo(a), {{ user.get_full_name|default:user.username }}!</p>
+          <form action="{% url 'logout' %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit">Sair</button>
+          </form>
+          {% else %}
+          <form action="{% url 'login' %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Usuário" required>
+            <input type="password" name="password" placeholder="Senha" required>
+            <button type="submit">Entrar</button>
+          </form>
+          {% endif %}
+        </div>
+    
+      </header>
+
+    <h1>Lista de Parceiros</h1>
+    <main>
+        <p class="textos">Prezados catadores,</p>
+        <p class="textos">Essa é a lista de residências parceiras cadastradas. Escolha qual residência visitará e nos informe para contactarmos o parceiro e firmarmos a parceria.</p>
+        <p class="textos"> <b>Importante:</b> Não apareça no local de coleta sem antes confirmarmos a parceria.</p>
+        <div class="content">
+            <div class="center-column">
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rua</th>
+                            <th>Número</th>
+                            <th>Bairro</th>
+                            <th>Materiais</th>
+                            <th>Dias</th>
+                            <th>Turno</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for coleta in coletas %}
+                            <tr>
+                                <td>{{ coleta.rua }}</td>
+                                <td>{{ coleta.numero }}</td>
+                                <td>{{ coleta.bairro }}</td>
+                                <td>{{ coleta.materiais.all|join:", " }}</td>
+                                <td>{{ coleta.dias.all|join:", " }}</td>
+                                <td>{{ coleta.turno }}</td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="6">Nenhum registro encontrado.</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <div class="tabble-wrapper"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded",
+          function () {
+            const hamburger = document.querySelector(".hamburger");
+            const menu = document.querySelector(".menu");
+            hamburger.addEventListener("click", function () {
+              menu.classList.toggle('show')
+            })
+          }
+        )
+      </script>
+</body>
+</html>
